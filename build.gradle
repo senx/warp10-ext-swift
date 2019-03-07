@@ -212,8 +212,9 @@ publishing {
       artifactId project.ext.name
       version project.ext.version
 
-      // Publish the über jar and the sources
+      // Publish the über jar and the sources/javadoc
       artifact sourcesJar
+      artifact javadocJar
       artifact shadowJar
     }
   }
