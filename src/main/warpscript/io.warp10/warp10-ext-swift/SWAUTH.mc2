@@ -1,0 +1,62 @@
+//
+//   Copyright 2019  SenX S.A.S.
+//
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
+//
+
+{
+    'name' 'SWAUTH'
+    'desc' 
+    <'
+Calls an Open Stack authentication endpoint to retrieve an authentication token. Such a token is needed to use the `SWLIST`, `SWLOAD` or `SWSTORE` function.
+
+The input parameter for `SWAUTH` is a map containing the following keys:
+
+| Key | Description |
+|-----|-------------|
+| `username` | Username to use for authentication |
+| `password` | Password associated with `username` |
+| `tenant.id` | OpenStack tenant id |
+| `tenant.name` | OpenStack tenant name, use if `tenant.id` is not set |
+| `region` | Preferred OpenStack region |
+| `domain` | Domain to use for authentication |
+| `authurl` | Authentication URL to use. When using Keystone 3, use the `/auth/tokens` URL |
+| `authmethod` | One of `KEYSTONE`, `KEYSTONE_V3`, `BASIC`, `TEMPAUTH` |
+
+    '>
+    'tags' [ 'swift' 'ext' ]
+    'sig' [ [ [ 'params:MAP' ] [ 'auth:OSAUTH'  ] ] ] // Signature
+    'params' {
+      'params' 'Map of parameters containing the keys defined above.'
+      'auth' 'Authentication object, to be used as parameter to other Swift functions.'
+    }
+    'examples' [
+      <'
+{ /* ... */ } SWAUTH
+      '>
+    ]
+    'related' [ 'SWLIST' 'SWSTORE' 'SWLOAD' ]
+    'ext' 'io.warp10.script.ext.swift.SwiftWarpScriptExtension'
+} 'info' STORE
+
+<%
+  !$info INFO
+  SAVE 'context' STORE
+    <% SWAUTH %> <% %> <% %> TRY    
+  $context RESTORE
+%>
+'macro' STORE
+
+// Unit tests
+
+$macro

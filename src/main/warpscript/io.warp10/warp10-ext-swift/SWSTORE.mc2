@@ -1,0 +1,58 @@
+//
+//   Copyright 2019  SenX S.A.S.
+//
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
+//
+
+{
+    'name' 'SWSTORE'
+    'desc' 
+    <'
+Stores a byte array in a Swift container.
+    '>
+    'tags' [ 'swift' 'ext' ]
+    'sig' [
+      [ [ 'object:STRING' 'container:STRING' 'auth:OSAUTH' 'bytes:BYTES' ] [ ] ]
+      [ [ 'object:STRING' 'container:STRING' 'auth:OSAUTH' 'string:BYTES' ] [ ] ]
+    ] 
+    'params' {
+      'object' 'Name to give the object in `container`.'      
+      'auth' 'Authentication object as returned by `SWAUTH`.'
+      'container' 'Name of Swift container in which to store `content`.'
+      'bytes' 'Byte array to store in `container`/`object`.'
+      'string' 'String to store, will be converted to its UTF-8 bytes prior to storage.'
+    }
+    'examples' [
+      <'
+NEWGTS WRAPRAW
+{ /* ... */ } SWAUTH
+'mycontainer'
+'myobject'
+SWSTORE
+      '>
+    ]
+    'related' [ 'SWAUTH' 'SWLIST' 'SWLOAD' ]
+    'ext' 'io.warp10.script.ext.swift.SwiftWarpScriptExtension'
+} 'info' STORE
+
+<%
+  !$info INFO
+  SAVE 'context' STORE
+    <% SWSTORE %> <% %> <% %> TRY    
+  $context RESTORE
+%>
+'macro' STORE
+
+// Unit tests
+
+$macro
