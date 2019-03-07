@@ -45,7 +45,7 @@ SWLOAD
 <%
   !$info INFO
   SAVE 'context' STORE
-    <% SWLOAD %> <% %> <% %> TRY    
+    <% 'SWLOAD' EVAL %> <% %> <% %> TRY    
   $context RESTORE
 %>
 'macro' STORE

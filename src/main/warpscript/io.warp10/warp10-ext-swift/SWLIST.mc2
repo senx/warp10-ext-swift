@@ -43,7 +43,7 @@ SWLIST
 <%
   !$info INFO
   SAVE 'context' STORE
-    <% SWLIST %> <% %> <% %> TRY    
+    <% 'SWLIST' EVAL %> <% %> <% %> TRY    
   $context RESTORE
 %>
 'macro' STORE

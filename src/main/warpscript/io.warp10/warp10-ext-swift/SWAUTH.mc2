@@ -52,7 +52,7 @@ The input parameter for `SWAUTH` is a map containing the following keys:
 <%
   !$info INFO
   SAVE 'context' STORE
-    <% SWAUTH %> <% %> <% %> TRY    
+    <% 'SWAUTH' EVAL %> <% %> <% %> TRY    
   $context RESTORE
 %>
 'macro' STORE

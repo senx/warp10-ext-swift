@@ -48,7 +48,7 @@ SWSTORE
 <%
   !$info INFO
   SAVE 'context' STORE
-    <% SWSTORE %> <% %> <% %> TRY    
+    <% 'SWSTORE' EVAL %> <% %> <% %> TRY    
   $context RESTORE
 %>
 'macro' STORE
